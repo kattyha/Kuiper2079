@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.U2D;
 using Random = UnityEngine.Random;
@@ -26,6 +25,52 @@ public class AsteroidBehaviour : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.LogFormat("OnCollisionEnter2D {0}", collision.gameObject.tag);
+        switch (collision.gameObject.tag)
+        {
+            case "Player":
+            {
+                KillPlayer(collision.gameObject);
+                break;
+            }
+            case "bullet":
+            {
+                ReceiveDamage();
+                break;
+            }
+        }
+    }
+    
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        Debug.LogFormat("OnTriggerEnter2D {0}", col.gameObject.tag);
+        switch (col.gameObject.tag)
+        {
+            case "Player":
+            {
+                KillPlayer(col.gameObject);
+                break;
+            }
+            case "bullet":
+            {
+                ReceiveDamage();
+                break;
+            }
+        }
+    }
+
+    private void KillPlayer(GameObject player)
+    {
+        Destroy(player);
+    }
+
+    private void ReceiveDamage()
+    {
+        Destroy(gameObject);
     }
 
     private void InsertRandomPoint(Spline s, int offset)

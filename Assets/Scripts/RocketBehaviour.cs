@@ -5,7 +5,7 @@ public class RocketBehaviour : MonoBehaviour
 {
     private readonly int maxSpeed = 5;
     private readonly float enginePower = 1;
-    private readonly float torqueVelocity = -0.1f;
+    private readonly float torqueVelocity = -0.2f;
     
     public GameObject BulletPrefab;
     public int ReloadTime;
