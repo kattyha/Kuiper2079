@@ -10,7 +10,7 @@ public class WorldBehaviour : RoutineBehaviour
     public int SpawnCooldown;
     private int lastSpawn;
     
-    public override int ExecutionPeriod => SpawnCooldown;
+    protected override int ExecutionPeriod => SpawnCooldown;
     
     // Start is called before the first frame update
     void Start()
@@ -25,7 +25,7 @@ public class WorldBehaviour : RoutineBehaviour
         base.Update();
     }
 
-    public override void ExecuteRoutine()
+    protected override void ExecuteRoutine()
     {
         var rnd = lastSpawn;
         while (rnd == lastSpawn)

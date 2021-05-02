@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class RocketBehaviour : RoutineBehaviour
@@ -6,17 +7,22 @@ public class RocketBehaviour : RoutineBehaviour
     private readonly int maxSpeed = 5;
     private readonly float enginePower = 1;
     private readonly float torqueVelocity = -0.2f;
+
+    public int Lives;
     
     public GameObject BulletPrefab;
     public int ReloadTime;
-    public override int ExecutionPeriod => ReloadTime;
+    protected override int ExecutionPeriod => ReloadTime;
 
     private Rigidbody2D rig { get; set; }
+    
+    private new Renderer renderer { get; set; }
     
     // Start is called before the first frame update
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
+        renderer = GetComponent<Renderer>();
     }
 
     // Update is called once per frame
@@ -24,7 +30,7 @@ public class RocketBehaviour : RoutineBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            transform.position = Vector3.zero;
+            ResetPosition();
             return;
         }
 
@@ -32,8 +38,38 @@ public class RocketBehaviour : RoutineBehaviour
         base.Update();
     }
 
-    public override void ExecuteRoutine() => Shoot();
+    protected override void ExecuteRoutine() => Shoot();
 
+    public void SufferDamage()
+    {
+        Lives--;
+        if (Lives <= 0)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            ResetPosition();
+        }
+    }
+
+    private void ResetPosition()
+    {
+        transform.position = Vector3.zero;
+        StartCoroutine(Blink(3));
+    }
+    
+    IEnumerator Blink(int blinks)
+    {
+        for (var i = 0; i < blinks; i++)
+        {
+            renderer.enabled = false;
+            yield return new WaitForSeconds(0.2f);
+            renderer.enabled = true;
+            yield return new WaitForSeconds(0.2f);
+        }
+    }
+    
     private void Move()
     {
         var thrust = Math.Max(Input.GetAxis("Vertical"), 0) * enginePower;

@@ -62,7 +62,7 @@ public class AsteroidBehaviour : MonoBehaviour
 
     private void KillPlayer(GameObject player)
     {
-        //Destroy(player);
+        player.GetComponent<RocketBehaviour>().SufferDamage();
     }
 
     private void ReceiveDamage()

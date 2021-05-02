@@ -3,7 +3,7 @@ using UnityEngine;
 
 public abstract class RoutineBehaviour : MonoBehaviour
 {
-    public abstract int ExecutionPeriod { get; }
+    protected abstract int ExecutionPeriod { get; }
     private DateTime? lastExecution;
 
     public virtual void Update()
@@ -16,5 +16,5 @@ public abstract class RoutineBehaviour : MonoBehaviour
         }
     }
 
-    public abstract void ExecuteRoutine();
+    protected abstract void ExecuteRoutine();
 }
