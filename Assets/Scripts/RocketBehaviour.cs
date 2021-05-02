@@ -17,7 +17,6 @@ public class RocketBehaviour : MonoBehaviour
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
-        rig.centerOfMass = new Vector2(0, -0.5f);
     }
 
     // Update is called once per frame
@@ -38,7 +37,7 @@ public class RocketBehaviour : MonoBehaviour
         var thrust = Math.Max(Input.GetAxis("Vertical"), 0) * enginePower;
         var possibleSpeedUp = (maxSpeed - rig.velocity.magnitude) * thrust;
         rig.AddRelativeForce(new Vector2(0, Math.Max(possibleSpeedUp, 0) * rig.mass));
-        transform.RotateAround((Vector3)rig.centerOfMass + transform.position,Vector3.forward, torqueVelocity * Input.GetAxis("Horizontal"));
+        transform.RotateAround(transform.position,Vector3.forward, torqueVelocity * Input.GetAxis("Horizontal"));
     }
 
     private void Shoot()

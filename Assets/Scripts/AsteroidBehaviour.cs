@@ -14,6 +14,8 @@ public class AsteroidBehaviour : MonoBehaviour
     private readonly int points = 7;
 
     public GameObject Prefab;
+
+    private Rigidbody2D rig;
     
     // Start is called before the first frame update
     void Start()
@@ -25,8 +27,14 @@ public class AsteroidBehaviour : MonoBehaviour
             InsertRandomPoint(controller.spline, i);
         }
         controller.BakeCollider();
-        var rig = GetComponent<Rigidbody2D>();
+        rig = GetComponent<Rigidbody2D>();
         rig.mass = Radius * dencity;
+
+        var asteroids = GameObject.FindGameObjectsWithTag("asteroid");
+        foreach (var asteroid in asteroids)
+        {
+            Physics2D.IgnoreCollision(asteroid.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        }
     }
 
     // Update is called once per frame
@@ -52,23 +60,6 @@ public class AsteroidBehaviour : MonoBehaviour
             }
         }
     }
-    
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        switch (col.gameObject.tag)
-        {
-            case "Player":
-            {
-                KillPlayer(col.gameObject);
-                break;
-            }
-            case "bullet":
-            {
-                ReceiveDamage();
-                break;
-            }
-        }
-    }
 
     private void KillPlayer(GameObject player)
     {
@@ -81,9 +72,16 @@ public class AsteroidBehaviour : MonoBehaviour
         var r = Radius / parts;
         if (r > 0.25f)
         {
-            var clone = Instantiate(Prefab, transform.position, Quaternion.identity);
-            var script = clone.GetComponent<AsteroidBehaviour>();
-            script.Radius = r;
+            var equalAngle = 360 / parts;
+            for (var i = 1; i <= parts; i++)
+            {
+                var fragment = Instantiate(Prefab, transform.position, transform.rotation);
+                fragment.transform.rotation *= Quaternion.AngleAxis(equalAngle * i, Vector3.forward);
+                var script = fragment.GetComponent<AsteroidBehaviour>();
+                script.Radius = r;
+                var fragmentRig = fragment.GetComponent<Rigidbody2D>();
+                fragmentRig.AddForce((Vector2)fragment.transform.up * 50 + rig.velocity.normalized );
+            }
         }
 
         Destroy(gameObject);

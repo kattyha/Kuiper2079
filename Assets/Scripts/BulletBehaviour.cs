@@ -17,4 +17,9 @@ public class BulletBehaviour : MonoBehaviour
     {
         transform.Translate(Vector3.up * Speed);
     }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        Destroy(gameObject);
+    }
 }
