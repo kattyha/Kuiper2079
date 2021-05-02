@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class RocketBehaviour : MonoBehaviour
+public class RocketBehaviour : RoutineBehaviour
 {
     private readonly int maxSpeed = 5;
     private readonly float enginePower = 1;
@@ -9,7 +9,7 @@ public class RocketBehaviour : MonoBehaviour
     
     public GameObject BulletPrefab;
     public int ReloadTime;
-    private DateTime? lastFire;
+    public override int ExecutionPeriod => ReloadTime;
 
     private Rigidbody2D rig { get; set; }
     
@@ -20,7 +20,7 @@ public class RocketBehaviour : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public override void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -29,8 +29,10 @@ public class RocketBehaviour : MonoBehaviour
         }
 
         Move();
-        Shoot();
+        base.Update();
     }
+
+    public override void ExecuteRoutine() => Shoot();
 
     private void Move()
     {
@@ -44,12 +46,7 @@ public class RocketBehaviour : MonoBehaviour
     {
         if (Input.GetButton("Fire1"))
         {
-            var now = DateTime.Now;
-            if (!lastFire.HasValue || lastFire.Value.AddMilliseconds(ReloadTime) < now)
-            {
-                Instantiate(BulletPrefab, transform.position, transform.rotation);
-                lastFire = now;
-            }
+            Instantiate(BulletPrefab, transform.position, transform.rotation);
         }
     }
 }

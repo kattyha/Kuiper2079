@@ -3,12 +3,14 @@ using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class WorldBehaviour : MonoBehaviour
+public class WorldBehaviour : RoutineBehaviour
 {
     private SpawnBehaviour[] spawns;
 
     public int SpawnCooldown;
-    private DateTime? lastSpawn;
+    private int lastSpawn;
+    
+    public override int ExecutionPeriod => SpawnCooldown;
     
     // Start is called before the first frame update
     void Start()
@@ -18,14 +20,20 @@ public class WorldBehaviour : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public override void Update()
     {
-        var now = DateTime.Now;
-        if (!lastSpawn.HasValue || lastSpawn.Value.AddMilliseconds(SpawnCooldown) < now)
+        base.Update();
+    }
+
+    public override void ExecuteRoutine()
+    {
+        var rnd = lastSpawn;
+        while (rnd == lastSpawn)
         {
-            var randomSpawn = spawns[Random.Range(0, spawns.Length)];
-            randomSpawn.SpawnAsteroid();
-            lastSpawn = now;
+            rnd = Random.Range(0, spawns.Length);
         }
+        var randomSpawn = spawns[rnd];
+        randomSpawn.SpawnAsteroid();
+        lastSpawn = rnd;
     }
 }
