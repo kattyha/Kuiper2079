@@ -82,7 +82,7 @@ public class RocketBehaviour : RoutineBehaviour
     {
         if (Input.GetButton("Fire1"))
         {
-            Instantiate(BulletPrefab, transform.position + new Vector3(0, 0.5f, 0), transform.rotation);
+            Instantiate(BulletPrefab, transform.position, transform.rotation);
         }
     }
 }
