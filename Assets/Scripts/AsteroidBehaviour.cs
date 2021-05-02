@@ -45,7 +45,6 @@ public class AsteroidBehaviour : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.LogFormat("OnCollisionEnter2D {0}", collision.gameObject.tag);
         switch (collision.gameObject.tag)
         {
             case "Player":
@@ -63,7 +62,7 @@ public class AsteroidBehaviour : MonoBehaviour
 
     private void KillPlayer(GameObject player)
     {
-        Destroy(player);
+        //Destroy(player);
     }
 
     private void ReceiveDamage()
