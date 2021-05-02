@@ -1,13 +1,19 @@
+using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.U2D;
 using Random = UnityEngine.Random;
 
 public class AsteroidBehaviour : MonoBehaviour
 {
-    private float dispersion = 0.9f;
+    private float dispersion = 0.5f;
     public float Radius;
 
+    public float dencity = 5;
+
     private readonly int points = 7;
+
+    public GameObject Prefab;
     
     // Start is called before the first frame update
     void Start()
@@ -19,12 +25,14 @@ public class AsteroidBehaviour : MonoBehaviour
             InsertRandomPoint(controller.spline, i);
         }
         controller.BakeCollider();
+        var rig = GetComponent<Rigidbody2D>();
+        rig.mass = Radius * dencity;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+           
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -47,7 +55,6 @@ public class AsteroidBehaviour : MonoBehaviour
     
     void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.LogFormat("OnTriggerEnter2D {0}", col.gameObject.tag);
         switch (col.gameObject.tag)
         {
             case "Player":
@@ -70,6 +77,15 @@ public class AsteroidBehaviour : MonoBehaviour
 
     private void ReceiveDamage()
     {
+        var parts = 2;
+        var r = Radius / parts;
+        if (r > 0.25f)
+        {
+            var clone = Instantiate(Prefab, transform.position, Quaternion.identity);
+            var script = clone.GetComponent<AsteroidBehaviour>();
+            script.Radius = r;
+        }
+
         Destroy(gameObject);
     }
 
