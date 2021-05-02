@@ -1,24 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class WorldBehaviour : MonoBehaviour
 {
-    public GameObject AsteroidPrefab;
+    private SpawnBehaviour[] spawns;
+
+    public int SpawnCooldown;
+    private DateTime? lastSpawn;
     
     // Start is called before the first frame update
     void Start()
     {
-        SpawnAsteroid();
+        spawns = GameObject.FindGameObjectsWithTag("Respawn")
+            .Select(x => x.GetComponent<SpawnBehaviour>()).ToArray();
     }
 
     // Update is called once per frame
     void Update()
     {
-    }
-
-    private void SpawnAsteroid()
-    {
-        Instantiate(AsteroidPrefab, new Vector3(2, 2, 0), Quaternion.identity);
+        var now = DateTime.Now;
+        if (!lastSpawn.HasValue || lastSpawn.Value.AddMilliseconds(SpawnCooldown) < now)
+        {
+            var randomSpawn = spawns[Random.Range(0, spawns.Length)];
+            randomSpawn.SpawnAsteroid();
+            lastSpawn = now;
+        }
     }
 }
