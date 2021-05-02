@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class RocketBehaviour : RoutineBehaviour
 {
@@ -8,7 +9,7 @@ public class RocketBehaviour : RoutineBehaviour
     private readonly float enginePower = 1;
     private readonly float torqueVelocity = -0.2f;
 
-    public int Lives;
+    public int Health;
     
     public GameObject BulletPrefab;
     public int ReloadTime;
@@ -42,8 +43,8 @@ public class RocketBehaviour : RoutineBehaviour
 
     public void SufferDamage()
     {
-        Lives--;
-        if (Lives <= 0)
+        Health--;
+        if (Health <= 0)
         {
             Destroy(gameObject);
         }

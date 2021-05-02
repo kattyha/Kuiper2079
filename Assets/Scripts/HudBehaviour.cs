@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class HudBehaviour : MonoBehaviour
 {
     [SerializeField]
-    private Text payerLivesLabel;
+    private Text payerHealthLabel;
     
     private RocketBehaviour player { get; set; }
     
@@ -19,6 +20,6 @@ public class HudBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        payerLivesLabel.text = player.Lives.ToString();
+        payerHealthLabel.text = player.Health.ToString();
     }
 }
