@@ -25,7 +25,7 @@ public class RocketBehaviour : MonoBehaviour
     
     private new ParticleSystem particleSystem { get; set; }
     
-    private Collider2D collider { get; set; }
+    private new Collider2D collider { get; set; }
     
     // Start is called before the first frame update
     void Start()
