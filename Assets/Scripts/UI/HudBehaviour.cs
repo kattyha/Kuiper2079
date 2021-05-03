@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class HudBehaviour : MonoBehaviour
@@ -11,7 +7,10 @@ public class HudBehaviour : MonoBehaviour
     private Text payerHealthLabel;
     
     [SerializeField]
-    private Text payerBlinkCooldownLabel;
+    private Text playerBlinkCooldownLabel;
+
+    [SerializeField]
+    private Text playerScoreLabel;
     
     private RocketBehaviour player { get; set; }
     
@@ -26,6 +25,7 @@ public class HudBehaviour : MonoBehaviour
     {
         payerHealthLabel.text = player.Health.ToString();
         var cd = (player.BlinkCooldownFinish - Time.time).GetValueOrDefault(0);
-        payerBlinkCooldownLabel.text = cd > 0 ? cd.ToString("N1") : string.Empty;
+        playerBlinkCooldownLabel.text = cd > 0 ? cd.ToString("N1") : string.Empty;
+        playerScoreLabel.text = player.Score.ToString();
     }
 }
