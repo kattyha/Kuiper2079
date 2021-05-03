@@ -30,7 +30,7 @@ public class WorldBehaviour : MonoBehaviour
         while (true)
         {
             ActivateSpawn();
-            yield return new WaitForSeconds(SpawnCooldown / 1000);
+            yield return new WaitForSeconds(SpawnCooldown);
         }
     }
     

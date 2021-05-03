@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class RocketBehaviour : RoutineBehaviour
+public class RocketBehaviour : MonoBehaviour
 {
     private readonly int maxSpeed = 5;
     private readonly float enginePower = 1;
@@ -12,8 +12,8 @@ public class RocketBehaviour : RoutineBehaviour
     public int Health;
     
     public GameObject BulletPrefab;
-    public int ReloadTime;
-    protected override int ExecutionPeriod => ReloadTime;
+    public float ReloadTime;
+    private float? lastShoot;
 
     private Rigidbody2D rig { get; set; }
     
@@ -30,7 +30,7 @@ public class RocketBehaviour : RoutineBehaviour
     }
 
     // Update is called once per frame
-    public override void Update()
+    void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -39,10 +39,8 @@ public class RocketBehaviour : RoutineBehaviour
         }
 
         Move();
-        base.Update();
+        Shoot();
     }
-
-    protected override void ExecuteRoutine() => Shoot();
 
     public void SufferDamage()
     {
@@ -87,7 +85,13 @@ public class RocketBehaviour : RoutineBehaviour
     {
         if (Input.GetButton("Fire1"))
         {
-            Instantiate(BulletPrefab, transform.position, transform.rotation);
+            var now = Time.time;
+            if (!lastShoot.HasValue || lastShoot.Value + ReloadTime < now)
+            {
+                var bullet = Instantiate(BulletPrefab, transform.position, transform.rotation);
+                Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+                lastShoot = now;
+            }
         }
     }
 }
