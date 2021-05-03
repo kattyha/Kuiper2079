@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public class RocketBehaviour : MonoBehaviour
 {
@@ -12,8 +12,12 @@ public class RocketBehaviour : MonoBehaviour
     public int Health;
     
     public GameObject BulletPrefab;
+    
     public float ReloadTime;
     private float? lastShoot;
+    
+    public float HyperBlinkCooldown;
+    private float? lastBlink;
 
     private Rigidbody2D rig { get; set; }
     
@@ -21,12 +25,15 @@ public class RocketBehaviour : MonoBehaviour
     
     private new ParticleSystem particleSystem { get; set; }
     
+    private Collider2D collider { get; set; }
+    
     // Start is called before the first frame update
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
         renderer = GetComponent<Renderer>();
         particleSystem = GetComponent<ParticleSystem>();
+        collider = GetComponent<Collider2D>();
     }
 
     // Update is called once per frame
@@ -40,6 +47,7 @@ public class RocketBehaviour : MonoBehaviour
 
         Move();
         Shoot();
+        HyperBlink();
     }
 
     public void SufferDamage()
@@ -91,6 +99,28 @@ public class RocketBehaviour : MonoBehaviour
                 var bullet = Instantiate(BulletPrefab, transform.position, transform.rotation);
                 Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), GetComponent<Collider2D>());
                 lastShoot = now;
+            }
+        }
+    }
+
+    private void HyperBlink()
+    {
+        if (Input.GetButton("Jump"))
+        {
+            var now = Time.time;
+            if (!lastBlink.HasValue || lastBlink.Value + HyperBlinkCooldown < now)
+            {
+                
+                var y = Random.Range(
+                    Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).y,
+                    Camera.main.ScreenToWorldPoint(new Vector2(0, Screen.height)).y);
+                var x = Random.Range(
+                    Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).x,
+                    Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, 0)).x);
+
+                var blinkTarget = new Vector2(x, y);
+                transform.Translate(blinkTarget);
+                lastBlink = now;
             }
         }
     }
