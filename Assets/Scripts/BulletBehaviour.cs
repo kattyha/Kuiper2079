@@ -4,7 +4,7 @@ public class BulletBehaviour : MonoBehaviour
 {
     public float Speed;
 
-    public int Lifetime;
+    public float Lifetime;
 
     // Start is called before the first frame update
     void Start()

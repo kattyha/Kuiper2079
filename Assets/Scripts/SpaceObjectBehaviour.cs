@@ -21,7 +21,7 @@ public class SpaceObjectBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var isVisibleForMain = mainCamera.IsObjectVisible(gameObject.GetComponent<SpriteShapeRenderer>());
+        var isVisibleForMain = mainCamera.IsObjectVisible(gameObject.GetComponent<Renderer>());
         if (isVisibleForMain)
         {
             return;
