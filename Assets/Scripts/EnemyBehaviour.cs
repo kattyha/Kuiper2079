@@ -12,7 +12,6 @@ public class EnemyBehaviour : MonoBehaviour
     protected virtual void Start()
     {
         playerGameObject = GameObject.FindGameObjectWithTag("Player");
-        player = playerGameObject.GetComponent<RocketBehaviour>();
         
         rig = GetComponent<Rigidbody2D>();
     }
