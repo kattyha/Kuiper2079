@@ -98,12 +98,12 @@ public class RocketBehaviour : MonoBehaviour
     {
         if (Input.GetButton("Fire1"))
         {
-            var now = Time.time;
-            if (!lastShoot.HasValue || lastShoot.Value + ReloadTime < now)
+            if (!lastShoot.HasValue || lastShoot.Value + ReloadTime < Time.time)
             {
                 var bullet = Instantiate(BulletPrefab, transform.position, transform.rotation);
                 Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-                lastShoot = now;
+                bullet.GetComponent<BulletBehaviour>().Shoot(rig.velocity * rig.mass);
+                lastShoot = Time.time;
             }
         }
     }
@@ -113,10 +113,8 @@ public class RocketBehaviour : MonoBehaviour
         if (Input.GetButton("Jump"))
         {
             var mainCamera = Camera.main;
-            var now = Time.time;
-            if (!lastBlink.HasValue || lastBlink.Value + HyperBlinkCooldown < now)
+            if (!lastBlink.HasValue || lastBlink.Value + HyperBlinkCooldown < Time.time)
             {
-                
                 var y = Random.Range(
                     mainCamera.ScreenToWorldPoint(new Vector2(0, 0)).y,
                     mainCamera.ScreenToWorldPoint(new Vector2(0, Screen.height)).y);
@@ -126,7 +124,7 @@ public class RocketBehaviour : MonoBehaviour
 
                 var blinkTarget = new Vector2(x, y);
                 transform.Translate(blinkTarget);
-                lastBlink = now;
+                lastBlink = Time.time;
             }
         }
     }

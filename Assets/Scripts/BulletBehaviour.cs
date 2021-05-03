@@ -12,10 +12,11 @@ public class BulletBehaviour : MonoBehaviour
         Destroy(gameObject, Lifetime);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Shoot(Vector3 shooterVelocity)
     {
-        transform.Translate(Vector3.up * Speed * Time.deltaTime);
+        var rig = GetComponent<Rigidbody2D>();
+        rig.velocity = shooterVelocity;
+        rig.AddRelativeForce(Vector2.up * Speed);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
