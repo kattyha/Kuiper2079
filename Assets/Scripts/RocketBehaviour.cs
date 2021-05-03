@@ -72,10 +72,10 @@ public class RocketBehaviour : MonoBehaviour
     private void ResetPosition()
     {
         transform.position = Vector3.zero;
-        StartCoroutine(Blink(3));
+        StartCoroutine(ShowBlinkEffect(3));
     }
     
-    IEnumerator Blink(int blinks)
+    IEnumerator ShowBlinkEffect(int blinks)
     {
         for (var i = 0; i < blinks; i++)
         {
@@ -102,7 +102,7 @@ public class RocketBehaviour : MonoBehaviour
             if (!lastShoot.HasValue || lastShoot.Value + ReloadTime < Time.time)
             {
                 var bullet = Instantiate(BulletPrefab, transform.position, transform.rotation);
-                Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+                Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), collider);
                 bullet.GetComponent<BulletBehaviour>().Shoot(rig.velocity * rig.mass);
                 lastShoot = Time.time;
             }
