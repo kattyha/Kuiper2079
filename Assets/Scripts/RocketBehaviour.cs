@@ -19,11 +19,14 @@ public class RocketBehaviour : RoutineBehaviour
     
     private new Renderer renderer { get; set; }
     
+    private new ParticleSystem particleSystem { get; set; }
+    
     // Start is called before the first frame update
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
         renderer = GetComponent<Renderer>();
+        particleSystem = GetComponent<ParticleSystem>();
     }
 
     // Update is called once per frame
@@ -74,6 +77,7 @@ public class RocketBehaviour : RoutineBehaviour
     private void Move()
     {
         var thrust = Math.Max(Input.GetAxis("Vertical"), 0) * enginePower;
+        particleSystem.Emit(thrust > 0 ? 1 : 0);
         var possibleSpeedUp = (maxSpeed - rig.velocity.magnitude) * thrust;
         rig.AddRelativeForce(new Vector2(0, Math.Max(possibleSpeedUp, 0) * rig.mass));
         transform.RotateAround(transform.position,Vector3.forward, torqueVelocity * Input.GetAxis("Horizontal"));
