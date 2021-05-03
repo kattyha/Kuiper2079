@@ -10,6 +10,8 @@ public class RocketBehaviour : MonoBehaviour
     private readonly float torqueVelocity = -0.2f;
 
     public int Health;
+
+    public int Score;
     
     public GameObject BulletPrefab;
     
@@ -36,6 +38,8 @@ public class RocketBehaviour : MonoBehaviour
         renderer = GetComponent<Renderer>();
         particleSystem = GetComponent<ParticleSystem>();
         collider = GetComponent<Collider2D>();
+
+        Score = 0;
     }
 
     // Update is called once per frame

@@ -1,8 +1,9 @@
+using System;
 using UnityEngine;
 using UnityEngine.U2D;
 using Random = UnityEngine.Random;
 
-public class AsteroidBehaviour : MonoBehaviour
+public class AsteroidBehaviour : EnemyBehaviour
 {
     private float dispersion = 0.5f;
     public float Radius;
@@ -16,8 +17,10 @@ public class AsteroidBehaviour : MonoBehaviour
     private Rigidbody2D rig;
     
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
+        base.Start();
+        
         var controller = GetComponent<SpriteShapeController>();
         controller.spline.Clear();
         for (var i = 0; i < points; i++)
@@ -28,6 +31,8 @@ public class AsteroidBehaviour : MonoBehaviour
         rig = GetComponent<Rigidbody2D>();
         rig.mass = Radius * dencity;
 
+        Score = (int)Math.Round(Score * Radius);
+
         var asteroids = GameObject.FindGameObjectsWithTag("asteroid");
         foreach (var asteroid in asteroids)
         {
@@ -35,25 +40,7 @@ public class AsteroidBehaviour : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-           
-    }
-
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        switch (collision.gameObject.tag)
-        {
-            case "bullet":
-            {
-                ReceiveDamage();
-                break;
-            }
-        }
-    }
-
-    private void ReceiveDamage()
+    protected override void ReceiveDamage()
     {
         var parts = 2;
         var r = Radius / parts;

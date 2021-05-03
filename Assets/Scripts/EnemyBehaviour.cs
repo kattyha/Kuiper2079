@@ -1,19 +1,16 @@
 using UnityEngine;
-using UnityEngine.U2D;
-using Random = UnityEngine.Random;
 
 public class EnemyBehaviour : MonoBehaviour
 {
-    private Rigidbody2D rig;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
+    public int Score;
 
-    // Update is called once per frame
-    void Update()
+    protected GameObject playerGameObject;
+    private RocketBehaviour player;
+
+    protected virtual void Start()
     {
+        playerGameObject = GameObject.FindGameObjectWithTag("Player");
+        player = playerGameObject.GetComponent<RocketBehaviour>();
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -27,6 +24,7 @@ public class EnemyBehaviour : MonoBehaviour
             }
             case "bullet":
             {
+                ApplyScore();
                 ReceiveDamage();
                 break;
             }
@@ -38,8 +36,13 @@ public class EnemyBehaviour : MonoBehaviour
         player.GetComponent<RocketBehaviour>().SufferDamage();
     }
 
-    private void ReceiveDamage()
+    protected virtual void ReceiveDamage()
     {
         Destroy(gameObject);
+    }
+
+    private void ApplyScore()
+    {
+        player.Score += Score;
     }
 }

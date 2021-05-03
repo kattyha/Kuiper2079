@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6714605081828837733}
   - component: {fileID: 4640842015667302234}
   - component: {fileID: 4640842015667302229}
-  - component: {fileID: 2357929062429595854}
   - component: {fileID: 2021109853028640969}
   - component: {fileID: 2793312939299403871}
   m_Layer: 0
@@ -129,18 +128,6 @@ CompositeCollider2D:
     m_Paths: []
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
---- !u!114 &2357929062429595854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4640842015667302228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c660ebce67d3f8429c7b59631e9bec1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2021109853028640969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,8 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2496e992d1312c4686cc04f3ecea16a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Score: 100
   VisionRange: 10
-  EngineForce: 0.5
 --- !u!1 &4640842015868646538
 GameObject:
   m_ObjectHideFlags: 0
