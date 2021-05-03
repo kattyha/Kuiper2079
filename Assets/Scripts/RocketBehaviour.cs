@@ -19,6 +19,8 @@ public class RocketBehaviour : MonoBehaviour
     public float HyperBlinkCooldown;
     private float? lastBlink;
 
+    public float? BlinkCooldownFinish => lastBlink + HyperBlinkCooldown;
+
     private Rigidbody2D rig { get; set; }
     
     private new Renderer renderer { get; set; }
