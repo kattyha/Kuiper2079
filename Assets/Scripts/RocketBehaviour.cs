@@ -107,16 +107,17 @@ public class RocketBehaviour : MonoBehaviour
     {
         if (Input.GetButton("Jump"))
         {
+            var mainCamera = Camera.main;
             var now = Time.time;
             if (!lastBlink.HasValue || lastBlink.Value + HyperBlinkCooldown < now)
             {
                 
                 var y = Random.Range(
-                    Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).y,
-                    Camera.main.ScreenToWorldPoint(new Vector2(0, Screen.height)).y);
+                    mainCamera.ScreenToWorldPoint(new Vector2(0, 0)).y,
+                    mainCamera.ScreenToWorldPoint(new Vector2(0, Screen.height)).y);
                 var x = Random.Range(
-                    Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).x,
-                    Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, 0)).x);
+                    mainCamera.ScreenToWorldPoint(new Vector2(0, 0)).x,
+                    mainCamera.ScreenToWorldPoint(new Vector2(Screen.width, 0)).x);
 
                 var blinkTarget = new Vector2(x, y);
                 transform.Translate(blinkTarget);
