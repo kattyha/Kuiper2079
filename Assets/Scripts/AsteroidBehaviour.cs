@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.U2D;
 using Random = UnityEngine.Random;
@@ -47,22 +45,12 @@ public class AsteroidBehaviour : MonoBehaviour
     {
         switch (collision.gameObject.tag)
         {
-            case "Player":
-            {
-                KillPlayer(collision.gameObject);
-                break;
-            }
             case "bullet":
             {
                 ReceiveDamage();
                 break;
             }
         }
-    }
-
-    private void KillPlayer(GameObject player)
-    {
-        player.GetComponent<RocketBehaviour>().SufferDamage();
     }
 
     private void ReceiveDamage()
