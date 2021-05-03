@@ -1,6 +1,5 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -11,7 +10,8 @@ public class SpawnBehaviour : MonoBehaviour
     public Vector3 OppositeCorner1;
     public Vector3 OppositeCorner2;
 
-    public GameObject SpawnedPrefab;
+    [SerializeField]
+    public List<SpawnSettings> Spawned;
     
     // Start is called before the first frame update
     void Start()
@@ -27,15 +27,34 @@ public class SpawnBehaviour : MonoBehaviour
     
     public void SpawnAsteroid()
     {
-        var asteroid = Instantiate(SpawnedPrefab, transform.position, Quaternion.identity);
+        var placedGameObject = Instantiate(GetRandomPrefab(), transform.position, Quaternion.identity);
 
         var randomTracerTarget = new Vector2(
             Random.Range(OppositeCorner1.x, OppositeCorner2.x), 
             Random.Range(OppositeCorner1.y, OppositeCorner2.y));
 
         var tracer = randomTracerTarget - (Vector2)transform.position;
-        var rig = asteroid.GetComponent<Rigidbody2D>();
+        var rig = placedGameObject.GetComponent<Rigidbody2D>();
         rig.AddForce(tracer.normalized * initialSpeed * rig.mass);
         rig.AddTorque(Random.Range(5, 30));
+    }
+
+    private GameObject GetRandomPrefab()
+    {
+        var rnd = Random.Range(0f, 1f);
+        var sum = 0f;
+        GameObject prefab = null;
+        var ordered = Spawned.OrderBy(x => x.Probability);
+        foreach (var spawned in ordered)
+        {
+            sum += spawned.Probability;
+            prefab = spawned.Prefab;
+            if (rnd <= sum)
+            {
+                break;
+            }
+        }
+        
+        return prefab;
     }
 }

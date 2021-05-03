@@ -45,4 +45,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OppositeCorner1: {x: 0, y: 0, z: 0}
   OppositeCorner2: {x: 0, y: 0, z: 0}
-  SpawnedPrefab: {fileID: 1818065261506807271, guid: b221e4bb27504cd4596576f99c175e0d, type: 3}
+  Spawned:
+  - Prefab: {fileID: 1818065261506807271, guid: b221e4bb27504cd4596576f99c175e0d, type: 3}
+    Probability: 0.6
+  - Prefab: {fileID: 4640842015667302228, guid: 877a598646ff49245a083badcdcf2c92, type: 3}
+    Probability: 0.4
