@@ -1,8 +1,6 @@
-using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class MainMenuBehaviour : MonoBehaviour
 {
@@ -21,10 +19,12 @@ public class MainMenuBehaviour : MonoBehaviour
 
     void Start()
     {
-        if (PlayerStats.Score > 0)
+        if (PlayerStats.Score <= 0)
         {
-            gameOverPanel.SetActive(true);
-            scoreText.text = PlayerStats.Score.ToString();
+            return;
         }
+        
+        gameOverPanel.SetActive(true);
+        scoreText.text = PlayerStats.Score.ToString();
     }
 }

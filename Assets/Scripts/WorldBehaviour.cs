@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
@@ -18,11 +17,6 @@ public class WorldBehaviour : MonoBehaviour
             .Select(x => x.GetComponent<SpawnBehaviour>()).ToArray();
         
         StartCoroutine(SpawnCoroutine());
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 
     IEnumerator SpawnCoroutine()

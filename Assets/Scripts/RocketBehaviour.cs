@@ -8,7 +8,7 @@ public class RocketBehaviour : MonoBehaviour
 {
     private readonly int maxSpeed = 5;
     private readonly float enginePower = 1;
-    private readonly float torqueVelocity = -0.2f;
+    private readonly float torqueVelocity = 50f;
 
     public int Health;
     
@@ -91,7 +91,7 @@ public class RocketBehaviour : MonoBehaviour
         particleSystem.Emit(thrust > 0 ? 1 : 0);
         var possibleSpeedUp = (maxSpeed - rig.velocity.magnitude) * thrust;
         rig.AddRelativeForce(new Vector2(0, Math.Max(possibleSpeedUp, 0) * rig.mass));
-        transform.RotateAround(transform.position,Vector3.forward, torqueVelocity * Input.GetAxis("Horizontal"));
+        transform.RotateAround(transform.position,Vector3.forward, -torqueVelocity * Input.GetAxis("Horizontal") * Time.deltaTime);
     }
 
     private void Shoot()
