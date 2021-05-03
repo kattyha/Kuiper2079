@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class RocketBehaviour : MonoBehaviour
@@ -10,8 +11,6 @@ public class RocketBehaviour : MonoBehaviour
     private readonly float torqueVelocity = -0.2f;
 
     public int Health;
-
-    public int Score;
     
     public GameObject BulletPrefab;
     
@@ -39,7 +38,7 @@ public class RocketBehaviour : MonoBehaviour
         particleSystem = GetComponent<ParticleSystem>();
         collider = GetComponent<Collider2D>();
 
-        Score = 0;
+        PlayerStats.Score = 0;
     }
 
     // Update is called once per frame
@@ -61,7 +60,7 @@ public class RocketBehaviour : MonoBehaviour
         Health--;
         if (Health <= 0)
         {
-            Destroy(gameObject);
+            SceneManager.LoadScene("MenuScene");
         }
         else
         {

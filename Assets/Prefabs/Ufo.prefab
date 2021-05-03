@@ -154,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Score: 100
   VisionRange: 10
+  EngineForce: 0.25
 --- !u!1 &4640842015868646538
 GameObject:
   m_ObjectHideFlags: 0

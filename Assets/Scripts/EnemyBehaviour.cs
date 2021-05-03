@@ -6,11 +6,15 @@ public class EnemyBehaviour : MonoBehaviour
 
     protected GameObject playerGameObject;
     private RocketBehaviour player;
+    
+    protected Rigidbody2D rig;
 
     protected virtual void Start()
     {
         playerGameObject = GameObject.FindGameObjectWithTag("Player");
         player = playerGameObject.GetComponent<RocketBehaviour>();
+        
+        rig = GetComponent<Rigidbody2D>();
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -43,6 +47,6 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void ApplyScore()
     {
-        player.Score += Score;
+        PlayerStats.Score += Score;
     }
 }

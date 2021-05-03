@@ -221,7 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c4eae9b3ce63c54d83360a6d46e330b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  payerHealthLabel: {fileID: 1937501868}
+  playerHealthLabel: {fileID: 1937501868}
   playerBlinkCooldownLabel: {fileID: 1619443649}
   playerScoreLabel: {fileID: 622092686}
 --- !u!114 &419112410
@@ -524,6 +524,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Top Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 1888415875392376521, guid: 850485bbf270f1447b59fe9acbbff8b0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1888415875392376523, guid: 850485bbf270f1447b59fe9acbbff8b0, type: 3}
       propertyPath: orthographic size
       value: 2.5
@@ -689,7 +693,7 @@ Transform:
   m_GameObject: {fileID: 1288425614}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 22.5, y: 10, z: 1}
+  m_LocalScale: {x: 23.6, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -975,6 +979,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bottom Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 1888415875392376521, guid: 850485bbf270f1447b59fe9acbbff8b0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1888415875392376523, guid: 850485bbf270f1447b59fe9acbbff8b0, type: 3}
       propertyPath: orthographic size
       value: 2.5
@@ -1201,6 +1209,10 @@ PrefabInstance:
       value: Left Camera
       objectReference: {fileID: 0}
     - target: {fileID: 1888415875392376521, guid: 850485bbf270f1447b59fe9acbbff8b0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1888415875392376521, guid: 850485bbf270f1447b59fe9acbbff8b0, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -1276,6 +1288,10 @@ PrefabInstance:
     - target: {fileID: 1888415875392376521, guid: 850485bbf270f1447b59fe9acbbff8b0, type: 3}
       propertyPath: m_Name
       value: Right Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 1888415875392376521, guid: 850485bbf270f1447b59fe9acbbff8b0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1888415875392376523, guid: 850485bbf270f1447b59fe9acbbff8b0, type: 3}
       propertyPath: m_Depth

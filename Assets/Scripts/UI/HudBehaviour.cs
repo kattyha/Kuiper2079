@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class HudBehaviour : MonoBehaviour
 {
     [SerializeField]
-    private Text payerHealthLabel;
+    private Text playerHealthLabel;
     
     [SerializeField]
     private Text playerBlinkCooldownLabel;
@@ -23,9 +23,13 @@ public class HudBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        payerHealthLabel.text = player.Health.ToString();
+        if (!player)
+        {
+            return;   
+        }
+        playerHealthLabel.text = player.Health.ToString();
         var cd = (player.BlinkCooldownFinish - Time.time).GetValueOrDefault(0);
         playerBlinkCooldownLabel.text = cd > 0 ? cd.ToString("N1") : string.Empty;
-        playerScoreLabel.text = player.Score.ToString();
+        playerScoreLabel.text = PlayerStats.Score.ToString();
     }
 }

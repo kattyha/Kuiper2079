@@ -13,8 +13,6 @@ public class AsteroidBehaviour : EnemyBehaviour
     private readonly int points = 7;
 
     public GameObject Prefab;
-
-    private Rigidbody2D rig;
     
     // Start is called before the first frame update
     protected override void Start()
@@ -28,7 +26,7 @@ public class AsteroidBehaviour : EnemyBehaviour
             InsertRandomPoint(controller.spline, i);
         }
         controller.BakeCollider();
-        rig = GetComponent<Rigidbody2D>();
+        
         rig.mass = Radius * dencity;
 
         Score = (int)Math.Round(Score * Radius);
