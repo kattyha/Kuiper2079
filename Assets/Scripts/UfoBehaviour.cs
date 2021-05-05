@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class UfoBehaviour : EnemyBehaviour
@@ -6,32 +7,38 @@ public class UfoBehaviour : EnemyBehaviour
 
     public float EngineForce;
 
-    private float maxSpead = 5;
-    
+    public float MinSpeed;
+    public float MaxSpeed;
+
     protected override void Start()
     {
         base.Start();
+
+        rig.velocity = transform.up * MinSpeed;
     }
 
     void Update()
     {
-        if (!playerGameObject)
+        if (!PlayerBehaviour || !PlayerBehaviour.gameObject || PlayerBehaviour.Invisible)
         {
             return;
         }
         
-        var los = playerGameObject.transform.position - transform.position;
-        if (los.magnitude <= VisionRange)
+        var los = PlayerBehaviour.gameObject.transform.position - transform.position;
+        var targetInRange = los.magnitude <= VisionRange;
+        
+        if (targetInRange)
         {
             transform.rotation = Quaternion.LookRotation(Vector3.forward, los);
-            if (rig.velocity.magnitude <= maxSpead)
-            {
-                rig.AddForce(los.normalized * EngineForce);
-            }
+            var possibleSpeedUp = (MaxSpeed - rig.velocity.magnitude) * EngineForce * Time.deltaTime;
+            rig.AddRelativeForce(new Vector2(0, Math.Max(possibleSpeedUp, MinSpeed) * rig.mass));
         }
         else
         {
-            rig.AddForce(-los.normalized * EngineForce);
+            if (rig.velocity.magnitude <= MinSpeed)
+            {
+                rig.AddRelativeForce(new Vector2(0, EngineForce * rig.mass));
+            }
         }
     }
 }

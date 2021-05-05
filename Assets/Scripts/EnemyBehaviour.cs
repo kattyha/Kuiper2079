@@ -4,14 +4,14 @@ public class EnemyBehaviour : MonoBehaviour
 {
     public int Score;
 
-    protected GameObject playerGameObject;
+    protected RocketBehaviour PlayerBehaviour;
     private RocketBehaviour player;
     
     protected Rigidbody2D rig;
 
     protected virtual void Start()
     {
-        playerGameObject = GameObject.FindGameObjectWithTag("Player");
+        PlayerBehaviour = GameObject.FindGameObjectWithTag("Player").GetComponent<RocketBehaviour>();
         
         rig = GetComponent<Rigidbody2D>();
     }

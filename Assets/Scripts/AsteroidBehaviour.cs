@@ -7,7 +7,9 @@ public class AsteroidBehaviour : EnemyBehaviour
 {
     private float dispersion = 0.5f;
     public float Radius;
-
+    
+    private readonly float initialSpeed = 50;
+    
     public float dencity = 5;
 
     private readonly int points = 7;
@@ -35,6 +37,9 @@ public class AsteroidBehaviour : EnemyBehaviour
         {
             Physics2D.IgnoreCollision(asteroid.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
+        
+        rig.AddForce(transform.up * initialSpeed * rig.mass);
+        rig.AddTorque(Random.Range(1, 30));
     }
 
     protected override void ReceiveDamage()
@@ -43,15 +48,13 @@ public class AsteroidBehaviour : EnemyBehaviour
         var r = Radius / parts;
         if (r > 0.25f)
         {
-            var equalAngle = 360 / parts;
+            var equalAngle = 360 / parts + 90;
             for (var i = 1; i <= parts; i++)
             {
                 var fragment = Instantiate(Prefab, transform.position, transform.rotation);
                 fragment.transform.rotation *= Quaternion.AngleAxis(equalAngle * i, Vector3.forward);
                 var fragmentScript = fragment.GetComponent<AsteroidBehaviour>();
                 fragmentScript.Radius = r;
-                var fragmentRig = fragment.GetComponent<Rigidbody2D>();
-                fragmentRig.AddForce((Vector2)fragment.transform.up * 50 + rig.velocity.normalized );
             }
         }
 

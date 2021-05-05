@@ -15,8 +15,6 @@ public class SpawnSettings
 
 public class SpawnBehaviour : MonoBehaviour
 {
-    private readonly float initialSpeed = 50;
-    
     public Vector3 OppositeCorner1;
     public Vector3 OppositeCorner2;
 
@@ -32,9 +30,7 @@ public class SpawnBehaviour : MonoBehaviour
             Random.Range(OppositeCorner1.y, OppositeCorner2.y));
 
         var tracer = randomTracerTarget - (Vector2)transform.position;
-        var rig = placedGameObject.GetComponent<Rigidbody2D>();
-        rig.AddForce(tracer.normalized * initialSpeed * rig.mass);
-        rig.AddTorque(Random.Range(5, 30));
+        placedGameObject.transform.rotation = Quaternion.LookRotation(Vector3.forward, tracer);
     }
 
     private GameObject GetRandomPrefab()

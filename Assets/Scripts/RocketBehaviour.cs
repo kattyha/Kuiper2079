@@ -9,9 +9,10 @@ public class RocketBehaviour : MonoBehaviour
 {
     private readonly int maxSpeed = 5;
     private readonly float enginePower = 1;
-    private readonly float torqueVelocity = 50f;
+    private readonly float torqueVelocity = 100f;
 
     public int Health;
+    public bool Invisible;
     
     public GameObject BulletPrefab;
     
@@ -31,7 +32,6 @@ public class RocketBehaviour : MonoBehaviour
     
     private new Collider2D collider { get; set; }
     
-    // Start is called before the first frame update
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
@@ -72,10 +72,19 @@ public class RocketBehaviour : MonoBehaviour
     private void ResetPosition()
     {
         transform.position = Vector3.zero;
-        StartCoroutine(ShowBlinkEffect(3));
+        StartCoroutine(Immune());
+    }
+
+    private IEnumerator Immune()
+    {
+        collider.enabled = false;
+        Invisible = true;
+        yield return ShowBlinkEffect(3);
+        collider.enabled = true;
+        Invisible = false;
     }
     
-    IEnumerator ShowBlinkEffect(int blinks)
+    private IEnumerator ShowBlinkEffect(int blinks)
     {
         for (var i = 0; i < blinks; i++)
         {
