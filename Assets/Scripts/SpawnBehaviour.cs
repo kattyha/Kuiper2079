@@ -23,7 +23,7 @@ public class SpawnBehaviour : MonoBehaviour
     
     public void SpawnAsteroid()
     {
-        var placedGameObject = Instantiate(GetRandomPrefab(), transform.position, Quaternion.identity);
+        var placedGameObject = Instantiate(GetRandomPrefab(), transform.position, Quaternion.identity, transform.parent);
 
         var randomTracerTarget = new Vector2(
             Random.Range(OppositeCorner1.x, OppositeCorner2.x), 

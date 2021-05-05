@@ -1,6 +1,5 @@
 using Helpers;
 using UnityEngine;
-using UnityEngine.U2D;
 
 public class SpaceObjectBehaviour : MonoBehaviour
 {
@@ -14,7 +13,7 @@ public class SpaceObjectBehaviour : MonoBehaviour
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
-        world = GameObject.Find("World").transform;
+        world = GetComponentInParent<SpaceBehaviour>().World;
         mainCamera = Camera.main;
         renderer = GetComponent<Renderer>();
     }
@@ -26,7 +25,7 @@ public class SpaceObjectBehaviour : MonoBehaviour
         {
             return;
         }
-        
+
         var position = rig.centerOfMass + rig.position;
         
         var bottomLeft = world.position - world.localScale / 2;

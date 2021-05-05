@@ -3,9 +3,11 @@ using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class WorldBehaviour : MonoBehaviour
+public class SpaceBehaviour : MonoBehaviour
 {
     private SpawnBehaviour[] spawns;
+
+    public Transform World; 
 
     public int SpawnCooldown;
     private int lastSpawn;

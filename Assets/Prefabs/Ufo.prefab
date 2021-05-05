@@ -159,7 +159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Score: 100
   VisionRange: 5
-  EngineForce: 0.2
+  EngineForce: 0.1
   MinSpeed: 1
   MaxSpeed: 3
 --- !u!198 &839920964081498439

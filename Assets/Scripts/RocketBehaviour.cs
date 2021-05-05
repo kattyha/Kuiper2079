@@ -110,7 +110,7 @@ public class RocketBehaviour : MonoBehaviour
         {
             if (!lastShoot.HasValue || lastShoot.Value + ReloadTime < Time.time)
             {
-                var bullet = Instantiate(BulletPrefab, transform.position, transform.rotation);
+                var bullet = Instantiate(BulletPrefab, transform.position, transform.rotation, transform.parent);
                 Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), collider);
                 bullet.GetComponent<BulletBehaviour>().Shoot(rig.velocity * rig.mass);
                 lastShoot = Time.time;

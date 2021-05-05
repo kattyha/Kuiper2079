@@ -51,7 +51,7 @@ public class AsteroidBehaviour : EnemyBehaviour
             var equalAngle = 360 / parts + 90;
             for (var i = 1; i <= parts; i++)
             {
-                var fragment = Instantiate(Prefab, transform.position, transform.rotation);
+                var fragment = Instantiate(Prefab, transform.position, transform.rotation, transform.parent);
                 fragment.transform.rotation *= Quaternion.AngleAxis(equalAngle * i, Vector3.forward);
                 var fragmentScript = fragment.GetComponent<AsteroidBehaviour>();
                 fragmentScript.Radius = r;
