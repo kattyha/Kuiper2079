@@ -53,18 +53,18 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\BulletBehaviour.cs" />
+     <Compile Include="Assets\Scripts\Helpers\PlayerStats.cs" />
      <Compile Include="Assets\Scripts\Helpers\CameraExtension.cs" />
+     <Compile Include="Assets\Scripts\UfoBehaviour.cs" />
      <Compile Include="Assets\Scripts\RocketBehaviour.cs" />
      <Compile Include="Assets\Scripts\UI\HudBehaviour.cs" />
      <Compile Include="Assets\Scripts\AsteroidBehaviour.cs" />
      <Compile Include="Assets\Scripts\SpaceObjectBehaviour.cs" />
-     <Compile Include="Assets\Scripts\SpawnBehaviour.cs" />
-     <Compile Include="Assets\Scripts\WorldBehaviour.cs" />
-     <Compile Include="Assets\Scripts\UI\MainMenuBehaviour.cs" />
      <Compile Include="Assets\Scripts\EnemyBehaviour.cs" />
-     <Compile Include="Assets\Scripts\UfoBehaviour.cs" />
      <Compile Include="Assets\Scripts\SpawnSettings.cs" />
-     <Compile Include="Assets\Scripts\Helpers\PlayerStats.cs" />
+     <Compile Include="Assets\Scripts\SpawnBehaviour.cs" />
+     <Compile Include="Assets\Scripts\UI\MainMenuBehaviour.cs" />
+     <Compile Include="Assets\Scripts\WorldBehaviour.cs" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>
