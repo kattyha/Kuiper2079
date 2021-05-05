@@ -230,7 +230,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03fbd1246a63211409d779d08baeb179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxSpeed: 5
+  EnginePower: 1
   Health: 3
+  Invisible: 0
   BulletPrefab: {fileID: 7634583094998626116, guid: 03ed08fb3fe6a0042905e914e09d74dc, type: 3}
   ReloadTime: 0.5
   HyperBlinkCooldown: 3

@@ -7,12 +7,12 @@ using Random = UnityEngine.Random;
 
 public class RocketBehaviour : MonoBehaviour
 {
-    private readonly int maxSpeed = 5;
-    private readonly float enginePower = 1;
+    public float MaxSpeed;
+    public float EnginePower;
     private readonly float torqueVelocity = 100f;
 
     public int Health;
-    public bool Invisible;
+    public bool Invisible { get; private set; }
     
     public GameObject BulletPrefab;
     
@@ -41,8 +41,7 @@ public class RocketBehaviour : MonoBehaviour
 
         PlayerStats.Score = 0;
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
@@ -97,9 +96,9 @@ public class RocketBehaviour : MonoBehaviour
     
     private void Move()
     {
-        var thrust = Math.Max(Input.GetAxis("Vertical"), 0) * enginePower;
+        var thrust = Math.Max(Input.GetAxis("Vertical"), 0) * EnginePower;
         particleSystem.Emit(thrust > 0 ? 1 : 0);
-        var possibleSpeedUp = (maxSpeed - rig.velocity.magnitude) * thrust;
+        var possibleSpeedUp = (MaxSpeed - rig.velocity.magnitude) * thrust;
         rig.AddRelativeForce(new Vector2(0, Math.Max(possibleSpeedUp, 0) * rig.mass));
         transform.RotateAround(transform.position,Vector3.forward, -torqueVelocity * Input.GetAxis("Horizontal") * Time.deltaTime);
     }
