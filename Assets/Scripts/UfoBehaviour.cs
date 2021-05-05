@@ -6,17 +6,13 @@ public class UfoBehaviour : EnemyBehaviour
 
     public float EngineForce;
 
-    private Vector2 defaultVelocity;
     private float maxSpead = 5;
     
-    // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
-        defaultVelocity = rig.velocity;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!playerGameObject)

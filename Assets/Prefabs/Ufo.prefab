@@ -158,7 +158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Score: 100
-  VisionRange: 10
+  VisionRange: 5
   EngineForce: 0.25
 --- !u!198 &839920964081498439
 ParticleSystem:

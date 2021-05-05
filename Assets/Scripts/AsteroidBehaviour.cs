@@ -14,7 +14,6 @@ public class AsteroidBehaviour : EnemyBehaviour
 
     public GameObject Prefab;
     
-    // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
@@ -49,8 +48,8 @@ public class AsteroidBehaviour : EnemyBehaviour
             {
                 var fragment = Instantiate(Prefab, transform.position, transform.rotation);
                 fragment.transform.rotation *= Quaternion.AngleAxis(equalAngle * i, Vector3.forward);
-                var script = fragment.GetComponent<AsteroidBehaviour>();
-                script.Radius = r;
+                var fragmentScript = fragment.GetComponent<AsteroidBehaviour>();
+                fragmentScript.Radius = r;
                 var fragmentRig = fragment.GetComponent<Rigidbody2D>();
                 fragmentRig.AddForce((Vector2)fragment.transform.up * 50 + rig.velocity.normalized );
             }

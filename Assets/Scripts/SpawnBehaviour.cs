@@ -3,6 +3,16 @@ using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+[System.Serializable]
+public class SpawnSettings
+{
+    [SerializeField]
+    public GameObject Prefab;
+
+    [SerializeField]
+    public float Probability;
+}
+
 public class SpawnBehaviour : MonoBehaviour
 {
     private readonly float initialSpeed = 50;
