@@ -65,6 +65,7 @@
      <Compile Include="Assets\Scripts\SpawnBehaviour.cs" />
      <Compile Include="Assets\Scripts\UI\MainMenuBehaviour.cs" />
      <Compile Include="Assets\Scripts\WorldBehaviour.cs" />
+     <Compile Include="Assets\Scripts\FitScreenBehaviour.cs" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>
