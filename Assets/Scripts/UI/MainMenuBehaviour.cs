@@ -19,7 +19,7 @@ public class MainMenuBehaviour : MonoBehaviour
 
     void Start()
     {
-        if (PlayerStats.Score <= 0)
+        if (!PlayerStats.Score.HasValue)
         {
             return;
         }

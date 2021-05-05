@@ -30,6 +30,6 @@ public class HudBehaviour : MonoBehaviour
         playerHealthLabel.text = player.Health.ToString();
         var cd = (player.BlinkCooldownFinish - Time.time).GetValueOrDefault(0);
         playerBlinkCooldownLabel.text = cd > 0 ? cd.ToString("N1") : string.Empty;
-        playerScoreLabel.text = PlayerStats.Score.ToString();
+        playerScoreLabel.text = PlayerStats.Score.GetValueOrDefault(0).ToString();
     }
 }
