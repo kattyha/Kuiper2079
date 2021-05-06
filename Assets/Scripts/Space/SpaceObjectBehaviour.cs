@@ -1,3 +1,4 @@
+using System.Linq;
 using Helpers;
 using UnityEngine;
 
@@ -13,7 +14,7 @@ public class SpaceObjectBehaviour : MonoBehaviour
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
-        world = GetComponentInParent<SpaceBehaviour>().World;
+        world = SpaceHelper.GetSpace().GetComponent<SpaceBehaviour>().World;
         mainCamera = Camera.main;
         renderer = GetComponent<Renderer>();
     }

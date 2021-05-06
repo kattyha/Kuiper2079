@@ -66,6 +66,7 @@
      <Compile Include="Assets\Scripts\Space\SpaceBehaviour.cs" />
      <Compile Include="Assets\Scripts\FitScreenBehaviour.cs" />
      <Compile Include="Assets\Scripts\GunBehaviour.cs" />
+     <Compile Include="Assets\Scripts\Helpers\SpaceHelper.cs" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>

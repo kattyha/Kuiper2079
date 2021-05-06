@@ -42,12 +42,6 @@ public class RocketBehaviour : MonoBehaviour
     
     void Update()
     {
-        /*if (Input.GetKeyDown(KeyCode.R))
-        {
-            ResetPosition();
-            return;
-        }*/
-
         Move();
         Shoot();
         HyperBlink();
