@@ -12,7 +12,6 @@ public class SpaceBehaviour : MonoBehaviour
     public int SpawnCooldown;
     private int lastSpawn;
 
-    // Start is called before the first frame update
     void Start()
     {
         spawns = GameObject.FindGameObjectsWithTag("Respawn")

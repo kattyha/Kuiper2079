@@ -1,9 +1,9 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Helpers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Random = UnityEngine.Random;
 
 public class RocketBehaviour : MonoBehaviour
 {
@@ -14,14 +14,11 @@ public class RocketBehaviour : MonoBehaviour
     public int Health;
     public bool Invisible { get; private set; }
     
-    public GameObject BulletPrefab;
-    
-    public float ReloadTime;
-    private float? lastShoot;
-    
     public float HyperBlinkCooldown;
     private float? lastBlink;
 
+    private GunBehaviour[] Armaments;
+    
     public float? BlinkCooldownFinish => lastBlink + HyperBlinkCooldown;
 
     private Rigidbody2D rig { get; set; }
@@ -40,6 +37,7 @@ public class RocketBehaviour : MonoBehaviour
         collider = GetComponent<Collider2D>();
 
         PlayerStats.Score = 0;
+        Armaments = GetComponentsInChildren<GunBehaviour>();
     }
     
     void Update()
@@ -105,14 +103,16 @@ public class RocketBehaviour : MonoBehaviour
 
     private void Shoot()
     {
+        if (Armaments == null || Armaments.Length <= 0)
+        {
+            return;
+        }
+        
         if (Input.GetButton("Fire1"))
         {
-            if (!lastShoot.HasValue || lastShoot.Value + ReloadTime < Time.time)
+            foreach (var arment in Armaments)
             {
-                var bullet = Instantiate(BulletPrefab, transform.position, transform.rotation, transform.parent);
-                Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), collider);
-                bullet.GetComponent<BulletBehaviour>().Shoot(rig.velocity * rig.mass);
-                lastShoot = Time.time;
+                arment.Shoot(rig.velocity * rig.mass);
             }
         }
     }
