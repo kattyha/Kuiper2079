@@ -55,9 +55,9 @@ public class RocketBehaviour : MonoBehaviour
         HyperBlink();
     }
 
-    public void SufferDamage()
+    public void SufferDamage(int damage)
     {
-        Health--;
+        Health -= damage;
         if (Health <= 0)
         {
             SceneManager.LoadScene("MenuScene");

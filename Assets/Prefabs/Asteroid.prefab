@@ -244,7 +244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Score: 100
   Radius: 1
-  dencity: 5
+  Dencity: 5
   Prefab: {fileID: 1818065261506807271}
 --- !u!114 &7793215864875827576
 MonoBehaviour:

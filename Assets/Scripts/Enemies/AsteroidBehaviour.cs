@@ -10,7 +10,7 @@ public class AsteroidBehaviour : EnemyBehaviour
     
     private readonly float initialSpeed = 50;
     
-    public float dencity = 5;
+    public float Dencity;
 
     private readonly int points = 7;
 
@@ -28,7 +28,7 @@ public class AsteroidBehaviour : EnemyBehaviour
         }
         controller.BakeCollider();
         
-        rig.mass = Radius * dencity;
+        rig.mass = Radius * Dencity;
 
         Score = (int)Math.Round(Score * Radius);
 

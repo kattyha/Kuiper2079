@@ -36,7 +36,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void KillPlayer(GameObject player)
     {
-        player.GetComponent<RocketBehaviour>().SufferDamage();
+        player.GetComponent<RocketBehaviour>().SufferDamage(1);
     }
 
     protected virtual void ReceiveDamage()
