@@ -62,7 +62,9 @@ public class RocketBehaviour : MonoBehaviour
 
     private void ResetPosition()
     {
-        transform.position = Vector3.zero;
+        rig.velocity = Vector2.zero;
+        rig.angularVelocity = 0;
+        transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
         StartCoroutine(Immune());
     }
 
