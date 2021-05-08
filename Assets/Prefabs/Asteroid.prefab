@@ -79,7 +79,7 @@ SpriteShapeRenderer:
   m_SortingOrder: 0
   m_Color: {r: 0.15686275, g: 0.16470589, b: 0.16470589, a: 0.40392157}
   m_MaskInteraction: 0
-  m_ShapeTexture: {fileID: 10305, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShapeTexture: {fileID: 2800000, guid: 7bff1b3420d2e4d4f8b6f80dcc500fd8, type: 3}
   m_Sprites: []
   m_LocalAABB:
     m_Center: {x: 0.18195176, y: -0.11009085, z: 0}
@@ -159,20 +159,20 @@ MonoBehaviour:
       spriteIndex: 0
       corner: 1
       m_CornerMode: 1
-  m_SpriteShape: {fileID: 11400000, guid: e1d8ddc5e173d894c8dd704058042d4a, type: 2}
+  m_SpriteShape: {fileID: 11400000, guid: aa4b47beeba9ff74598edeb15be6a480, type: 2}
   m_FillPixelPerUnit: 256
   m_StretchTiling: 1
   m_SplineDetail: 16
   m_AdaptiveUV: 1
-  m_StretchUV: 0
+  m_StretchUV: 1
   m_WorldSpaceUV: 1
   m_CornerAngleThreshold: 30
-  m_ColliderDetail: 4
+  m_ColliderDetail: 16
   m_ColliderOffset: 0.5
   m_UpdateCollider: 1
   m_OptimizeCollider: 1
   m_OptimizeGeometry: 1
-  m_EnableTangents: 0
+  m_EnableTangents: 1
   m_GeometryCached: 0
   m_UTess2D: 0
 --- !u!50 &7536396139366396469
@@ -222,11 +222,11 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: -0.8287475, y: -0.657495}
-      - {x: -0.80068487, y: 0.3828533}
-      - {x: 0.20238031, y: 0.89621925}
-      - {x: 1.1924955, y: 0.42313108}
-      - {x: 1.1678492, y: -0.6815166}
-      - {x: 0.17965344, y: -1.1164008}
+      - {x: -0.81346464, y: 0.37615177}
+      - {x: 0.1896007, y: 0.9021415}
+      - {x: 1.192651, y: 0.4373133}
+      - {x: 1.180434, y: -0.67582786}
+      - {x: 0.192667, y: -1.1223232}
       - {x: -0.77911437, y: -0.6800822}
       - {x: -0.815734, y: -0.6634173}
       - {x: -0.8287475, y: -0.657495}
